@@ -2,8 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Component1 from './components/Component1.vue'
 import Component2 from './components/Component2.vue'
 import Component3 from './components/Component3.vue'
+import DynamicComponent from './components/DynamicComponent.vue'
 
 const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: { template: '<div></div>' }
+  },
   {
     path: '/1',
     name: 'Component1',
@@ -18,6 +24,11 @@ const routes = [
     path: '/3',
     name: 'Component3',
     component: Component3
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'DynamicRoute',
+    component: DynamicComponent
   }
 ]
 

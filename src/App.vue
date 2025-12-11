@@ -1,6 +1,15 @@
 <template>
   <div id="app">
     <h1>Vue Router Project</h1>
+    <div class="input-container">
+      <input 
+        v-model="routeInput" 
+        @keyup.enter="navigateToRoute"
+        type="text" 
+        placeholder="Enter route (e.g., 1, 2a, 3b...)"
+        class="route-input"
+      />
+    </div>
     <nav>
       <router-link to="/1">Component 1</router-link> |
       <router-link to="/2">Component 2</router-link> |
@@ -12,7 +21,21 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      routeInput: ''
+    }
+  },
+  methods: {
+    navigateToRoute() {
+      if (this.routeInput.trim()) {
+        const route = '/' + this.routeInput.trim()
+        this.$router.push(route)
+        this.routeInput = ''
+      }
+    }
+  }
 }
 </script>
 
@@ -39,6 +62,23 @@ nav a {
 
 nav a.router-link-active {
   color: #42b983;
+}
+
+.input-container {
+  padding: 20px;
+}
+
+.route-input {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #2c3e50;
+  border-radius: 4px;
+  width: 300px;
+  outline: none;
+}
+
+.route-input:focus {
+  border-color: #42b983;
 }
 </style>
 
